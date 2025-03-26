@@ -5,9 +5,7 @@
 		"tsx": "^4.19.3"
 	},
 	"scripts": {
-		"benchmark": "cargo build --release && mv target/release/libjarvis.dylib target/release/jarvis.node && pnpx tsx benchmark.ts",
-		"build": "napi build --release",
-		"build:debug": "napi build"
+		"benchmark": "cargo build --release && mv target/release/libjarvis.dylib target/release/jarvis.node && pnpx tsx benchmark.ts"
 	},
 	"napi": {
 		"name": "jarvis"

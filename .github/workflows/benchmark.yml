@@ -26,4 +26,12 @@ jobs:
         run: pnpm install
         
       - name: Run benchmarks
-        run: pnpm run benchmark 
+        run: |
+          cargo build --release
+          # On Linux, the library will be .so instead of .dylib
+          if [ -f "target/release/libjarvis.so" ]; then
+            mv target/release/libjarvis.so target/release/jarvis.node
+          elif [ -f "target/release/libjarvis.dylib" ]; then
+            mv target/release/libjarvis.dylib target/release/jarvis.node
+          fi
+          pnpx tsx benchmark.ts 
