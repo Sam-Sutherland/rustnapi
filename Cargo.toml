@@ -1,0 +1,17 @@
+[package]
+name = "jarvis"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi = { version = "3.0.0-alpha.33", features = ["napi4"] }
+napi-derive = { version = "3.0.0-alpha.29" }
+
+[build-dependencies]
+napi-build = "2.0.0"
+
+[target.'cfg(target_os = "macos")'.build]
+rustflags = ["-C", "link-arg=-undefined", "-C", "link-arg=dynamic_lookup"]
