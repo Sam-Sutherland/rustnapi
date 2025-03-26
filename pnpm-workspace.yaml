@@ -1,8 +1,0 @@
-ignoredBuiltDependencies:
-  - ffi
-  - ffi-napi
-  - ref
-  - ref-napi
-onlyBuiltDependencies:
-  - esbuild
-  - ffi-napi-v22
