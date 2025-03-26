@@ -29,4 +29,30 @@ jobs:
         run: pnpm build
         
       - name: Run benchmarks
-        run: pnpm bench 
+        run: |
+          cargo build --release
+          # On Linux, the library will be .so instead of .dylib
+          if [ -f "target/release/libjarvis.so" ]; then
+            mv target/release/libjarvis.so target/release/jarvis.node
+          elif [ -f "target/release/libjarvis.dylib" ]; then
+            mv target/release/libjarvis.dylib target/release/jarvis.node
+          fi
+          pnpx tsx benchmark.ts > benchmark-results.txt
+          
+      - name: Create benchmark report
+        run: |
+          echo "## Benchmark Results" > benchmark-report.md
+          echo "Generated on $(date)" >> benchmark-report.md
+          echo "" >> benchmark-report.md
+          echo "### Raw Results" >> benchmark-report.md
+          echo "\`\`\`" >> benchmark-report.md
+          cat benchmark-results.txt >> benchmark-report.md
+          echo "\`\`\`" >> benchmark-report.md
+          
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: |
+            benchmark-results.txt
+            benchmark-report.md 

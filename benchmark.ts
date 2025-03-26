@@ -57,9 +57,11 @@ function benchmarkUnary(name: string, fn: (n: number) => number | bigint, input:
 }
 
 // Run benchmarks
-console.log('Simple addition benchmark:');
+console.log('# Benchmark Results\n');
+
+console.log('## Simple Addition Benchmark');
 const ADD_ITERATIONS = 10_000_000;
-console.log(`Running ${ADD_ITERATIONS.toLocaleString()} iterations...`);
+console.log(`Running ${ADD_ITERATIONS.toLocaleString()} iterations...\n`);
 
 // Warm up
 benchmarkBinary('Warmup JS Add', jsAdd, 1000);
@@ -68,13 +70,16 @@ benchmarkBinary('Warmup Rust Add', rustAdd, 1000);
 // Addition benchmarks
 const jsAddTime = benchmarkBinary('JavaScript Add', jsAdd, ADD_ITERATIONS);
 const rustAddTime = benchmarkBinary('Rust Add', rustAdd, ADD_ITERATIONS);
-console.log(`Rust Add is ${(jsAddTime / rustAddTime).toFixed(2)}x faster\n`);
+console.log(`### Results
+- JavaScript: ${jsAddTime.toFixed(2)}ms
+- Rust: ${rustAddTime.toFixed(2)}ms
+- Speedup: ${(jsAddTime / rustAddTime).toFixed(2)}x\n`);
 
 // Fibonacci benchmarks
-console.log('Fibonacci benchmark:');
+console.log('## Fibonacci Benchmark');
 const FIB_ITERATIONS = 100;
 const FIB_N = 30;
-console.log(`Running ${FIB_ITERATIONS.toLocaleString()} iterations of fib(${FIB_N})...`);
+console.log(`Running ${FIB_ITERATIONS.toLocaleString()} iterations of fib(${FIB_N})...\n`);
 
 // Warm up
 benchmarkUnary('Warmup JS Fibonacci', jsFib, FIB_N, 1);
@@ -83,13 +88,16 @@ benchmarkUnary('Warmup Rust Fibonacci', rustFib, FIB_N, 1);
 // Fibonacci benchmarks
 const jsFibTime = benchmarkUnary('JavaScript Fibonacci', jsFib, FIB_N, FIB_ITERATIONS);
 const rustFibTime = benchmarkUnary('Rust Fibonacci', rustFib, FIB_N, FIB_ITERATIONS);
-console.log(`Rust Fibonacci is ${(jsFibTime / rustFibTime).toFixed(2)}x faster\n`);
+console.log(`### Results
+- JavaScript: ${jsFibTime.toFixed(2)}ms
+- Rust: ${rustFibTime.toFixed(2)}ms
+- Speedup: ${(jsFibTime / rustFibTime).toFixed(2)}x\n`);
 
 // Matrix multiplication benchmarks
-console.log('Matrix multiplication benchmark:');
+console.log('## Matrix Multiplication Benchmark');
 const MATRIX_SIZE = 200;
 const MATRIX_ITERATIONS = 5;
-console.log(`Running ${MATRIX_ITERATIONS} iterations of ${MATRIX_SIZE}x${MATRIX_SIZE} matrix multiplication...`);
+console.log(`Running ${MATRIX_ITERATIONS} iterations of ${MATRIX_SIZE}x${MATRIX_SIZE} matrix multiplication...\n`);
 
 // Warm up
 benchmarkUnary('Warmup JS Matrix', jsMatrixMultiply, MATRIX_SIZE, 1);
@@ -98,4 +106,7 @@ benchmarkUnary('Warmup Rust Matrix', rustMatrix, MATRIX_SIZE, 1);
 // Matrix multiplication benchmarks
 const jsMatrixTime = benchmarkUnary('JavaScript Matrix', jsMatrixMultiply, MATRIX_SIZE, MATRIX_ITERATIONS);
 const rustMatrixTime = benchmarkUnary('Rust Matrix', rustMatrix, MATRIX_SIZE, MATRIX_ITERATIONS);
-console.log(`Rust Matrix is ${(jsMatrixTime / rustMatrixTime).toFixed(2)}x faster`); 
+console.log(`### Results
+- JavaScript: ${jsMatrixTime.toFixed(2)}ms
+- Rust: ${rustMatrixTime.toFixed(2)}ms
+- Speedup: ${(jsMatrixTime / rustMatrixTime).toFixed(2)}x\n`); 
