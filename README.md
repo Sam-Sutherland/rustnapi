@@ -1,6 +1,6 @@
 # Rust NAPI Project
 
-[![Benchmark Status](https://github.com/sam/rustnapi/actions/workflows/benchmark.yml/badge.svg)](https://github.com/sam/rustnapi/actions/workflows/benchmark.yml)
+[![Benchmark Status](https://github.com/Sam-Sutherland/rustnapi/actions/workflows/benchmark.yml/badge.svg)](https://github.com/Sam-Sutherland/rustnapi/actions/workflows/benchmark.yml)
 
 This project is a Rust NAPI implementation.
 
