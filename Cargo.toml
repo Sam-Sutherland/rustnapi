@@ -1,5 +1,5 @@
 [package]
-name = "jarvis"
+name = "rustjs"
 version = "0.1.0"
 edition = "2024"
 
@@ -7,8 +7,8 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
-napi = { version = "3.0.0-alpha.33", features = ["napi4"] }
-napi-derive = { version = "3.0.0-alpha.29" }
+napi = "2.15.0"
+napi-derive = "2.15.0"
 
 [build-dependencies]
 napi-build = "2.0.0"

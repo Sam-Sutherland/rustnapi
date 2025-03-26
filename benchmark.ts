@@ -1,4 +1,4 @@
-import { add as rustAdd, fibonacci as rustFib, matrixMultiply as rustMatrix } from './jarvis.node';
+import { add as rustAdd, fibonacci as rustFib, matrixMultiply as rustMatrix } from './rustjs';
 
 function jsAdd(a: number, b: number): number {
     return a + b;
